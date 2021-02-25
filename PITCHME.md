@@ -235,8 +235,6 @@ def my_functiom(param1, param2):
 
 Не стоит: `l`, `O`, `I`.
 
-## 11. Именование переменных и функций  
-
 (есть более подробно позже в курсе)
 snake_case -- змеиный регистр, например, `my_function` 
 
@@ -245,7 +243,7 @@ snake_case -- змеиный регистр, например, `my_function`
 count, salary, user, book_data 
 is_digit(), get_user(), update_order() 
 ```
-## 12. Константы 
+Константы:
 
 `MAX_OVERFLOW`, `TOTAL`, `PI`
 
