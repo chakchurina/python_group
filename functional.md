@@ -12,17 +12,49 @@
 >>> numbers
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
+
+
+
+
+
+
+
+
+
+
+
 Пример: 
 ```
 letters = [letter for letter in 'human']
 h_letters
 ```
+
+
+
+
+
+
+
+
+
+
+
 Пример:
 ```
 >>> squares = [i * i for i in range(10)]
 >>> squares
 [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 ```
+
+
+
+
+
+
+
+
+
+
 
 ### Можно добавить if: 
 `[expression for member in iterable if condition]`
@@ -225,4 +257,32 @@ print(filtered)
 ```
 [s for s in list_of_strings if s.isdigit()]
 newlist = [x for x in fruits if x != "apple"]
+```
+
+# Решение последней задачи 
+
+На вход программы подается строка s и массив индексов indices.  
+
+Строку s нужно перемешать так, чтобы символ в i-той позиции исходной строки переместился в позицию indices[i] в перемешанной.
+
+Гарантируется, что s и indices имеют одинаковую длину. 
+
+```
+s, indices = "aaiougrt", [4, 0, 2, 6, 7, 3, 1, 5]
+s_new = ""
+
+for i in range (0, len(s)):
+    index = indices.index(i)
+    s_new = s_new + s[index]
+
+print(s_new)
+```
+Я сделала вот так: 
+```
+s, indices = "aaiougrt", [4, 0, 2, 6, 7, 3, 1, 5]
+result = [None]*(len(s))
+for i, letter in zip(indices, s):
+    result[i] = letter
+    
+print("".join(result)) 
 ```
