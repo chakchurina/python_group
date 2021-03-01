@@ -4,8 +4,7 @@
 
 ## list comprehension или генераторы списков 
 
-### Синтаксис: 
-`[expression for member in iterable]`
+Синтаксис: `[expression for member in iterable]`
 
 Пример: 
 ```
@@ -42,7 +41,7 @@ h_letters
 ```
 
 ### Можно добавить else if:  
-`[result if condition else result for member in iterable]`
+Синтаксис: `[result if condition else result for member in iterable]`
 
 Заменить число на "четное" или "нечетное":
 ```
@@ -54,7 +53,7 @@ h_letters
 
 ### Вложенные циклы
 
-`[result if condition else result for member in iterable]`
+Синтаксис: `[result if condition else result for member in iterable]`
 
 Транспонировать матрицу: 
 ```
@@ -82,17 +81,19 @@ h_letters
 
 ### Вложенные условия 
 
-`[expression for member in iterable if condition]`
+Синтаксис: `[expression for member in iterable if condition]`
+
 Выбрать только числа, которые одновременно делятся на 2 и на 5:
 ```
 >>> numbers = [y for y in range(100) if y % 2 == 0 if y % 5 == 0]
 >>> numbers
 [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
 ```
-
->>> cities = ['Austin', 'Tacoma', 'Topeka', 'Sacramento', 'Charlotte']
->>> temps = {city: [0 for _ in range(7)] for city in cities}
->>> temps
+Заполнить списки в словаре нулями: 
+```
+cities = ['Austin', 'Tacoma', 'Topeka', 'Sacramento', 'Charlotte']
+temps = {city: [0 for _ in range(7)] for city in cities}
+temps
 {
     'Austin': [0, 0, 0, 0, 0, 0, 0],
     'Tacoma': [0, 0, 0, 0, 0, 0, 0],
@@ -100,135 +101,128 @@ h_letters
     'Sacramento': [0, 0, 0, 0, 0, 0, 0],
     'Charlotte': [0, 0, 0, 0, 0, 0, 0]
 }
-
-# List comprehension is an elegant way to define and create lists based on existing lists.
-# List comprehension is generally more compact and faster than normal functions and loops for creating list.
-# However, we should avoid writing very long list comprehensions in one line to ensure that code is user-friendly.
-# Remember, every list comprehension can be rewritten in for loop, but every for loop can’t be rewritten in the form of list comprehension.
-
+```
+Генераторы списков это красивый способ создавать списки на лету. Обычно они не только более компактные, но и работают быстрее, чем обычные списки. Но все же стоит избегать слишком длинных выражений, чтобы они оставались читаемыми. 
 
 # Функциональное программирование в Python 
 
-f(x) = y
+## map
 
-# map, zip, filter, reduce 
+Синтаксис: `map(function, iterable(s))`
 
-# map 
-
-# map(function, iterable(s))
-
+```
 chr_list = ['1', '2', '3', '4', '5', '6', '7']
-int_list = map(int, chr_list)
+int_list = list(map(int, chr_list))
+```
 
 В курсе: 
-
+```
 a, b, c = map(int, input().split())
-
-numbers = map(int, input().split())
+numbers = list(map(int, input().split()))
+```
 
 Можно использовать другие функции: 
-
+```
 pets = ["cat", "dog", "parrot", "fish", "turtle"]
+list(map(str.upper, pets))
+list(map(len, pets))
+```
 
-map(str.upper(), pets)
-
-map(len(), pets)
-
-Кстати, у map есть еще один аргумент.
-
-map(pow, range(10), [2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
+Кстати, у `map` есть еще один аргумент.
+```
+list(map(pow, range(10), [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]))
 [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+list(map(pow, range(10), [2]*10))
+```
 
-map(pow, range(10), [2]*10)
-
+Еще один способ передать список параметров, причем столько, сколько нужно: 
+```
 from itertools import repeat 
 map(pow, range(10), repeat(2))
+```
 
+Еще пример для закрепления: 
+```
 list(map(pow, range(10), range(10)))
 [1, 1, 4, 27, 256, 3125, 46656, 823543, 16777216, 387420489]
+```
 
-# zip 
+## zip 
 
->>> integers = [1, 2, 3]
->>> letters = ['a', 'b', 'c'] 
+Синтаксис: `zip(iterable, iterable)`
 
-for integer, leter in zip(integers, letters):
+Очень полезная функция для решения алгоритмических задач:
+```
+integers = [1, 2, 3]
+letters = ['a', 'b', 'c'] 
+
+for integer, letter in zip(integers, letters):
     print(integer, letter)
+```
 
->>> integers = [1, 2, 3]
->>> letters = ['a', 'b', 'c']
+Можно использовать больше двух списков: 
+```
 >>> floats = [4.0, 5.0, 6.0]
->>> zipped = zip(integers, letters, floats)  # Three input iterables
+>>> zipped = zip(integers, letters, floats) 
 >>> list(zipped)
 [(1, 'a', 4.0), (2, 'b', 5.0), (3, 'c', 6.0)]
+```
 
+Из двух последоватльностей `zip` выберет ту, которая короче:  
+```
 list(zip(range(5), range(100)))
 [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]
+```
 
+## filter 
+Синтаксис: `filter(function, iterable)`
 
-# filter 
-
-# filter(function, iterable)
-
-# 1 
-
+"Фильтрует" значения списка с помощью переданной функции. Отфильтруем только строки, состоящие из чисел:
+```
 list_of_strings = ['one', 'two', 'list', '', 'dict', '100', '1', '50']
+list(filter(str.isdigit, list_of_strings))
+```
 
-In [2]: filter(str.isdigit, list_of_strings)
+Отфильтруем только взрослых: 
+```
+ages = [18, 5, 12, 32, 17, 24]
 
-# 1
-
-ages = [5, 12, 17, 18, 24, 32]
-
-def filter_func(x):
+def is_adult(x):
     return True if x >= 18 else False
 
-adults = list(filter(filter_func, ages))
-
-for x in adults:
-  print(x)
-  
-# 2
-
+list(filter(is_adult, ages))
+```  
+Оставим только гласные: 
+```
 letters = ['a', 'b', 'd', 'e', 'i', 'j', 'o']
 
-def filterVowels(letter):
+def is_vowel(letter):
     vowels = ['a', 'e', 'i', 'o', 'u']
     return True if letter in vowels else False
     
-filteredVowels = filter(filterVowels, letters)
+vowels = list(filter(is_vowel, letters))
+```
 
-
-# 3
-
+Выберем только нечетные: 
+```
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 def if_odd(x):
     return True if x % 2 != 0 else False
 
-result = filter(if_odd, seq) 
+result = filter(if_odd, numbers) 
 print(list(result))
+```
 
-# 4
+Выберем только truthy значения: 
+```
+random = [1, 'a', 0, False, True, '0']
+filtered = list(filter(None, random))
+print(filtered)
+```
 
-randomList = [1, 'a', 0, False, True, '0']
-
-filteredList = filter(None, randomList)
-
-for element in filteredList:
-    print(element)
-
-# То же можно сделать с помощью list comprehension:
-
+Обычно то, что можно сделать через filter, можно сделать и с помощью list comprehension:  
+```
 [s for s in list_of_strings if s.isdigit()]
-
 newlist = [x for x in fruits if x != "apple"]
-
-
-# all 
-
-
-# any 
-
-
-
+```
