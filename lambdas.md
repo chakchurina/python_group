@@ -7,7 +7,7 @@
 
 ```
 chr_list = ['1', '2', '3', '4', '5', '6', '7']
-int_list = list(map(int, chr_list))
+list(map(int, chr_list))
 ```
 В сочетании с другими функциями:
 
@@ -69,14 +69,14 @@ def square(a):
 
 -- то же, что вот это:
 ```
-lambda_suare = lambda a: a*a 
+lambda_square = lambda a: a*a 
 ```
 
 Мы не используем ничего из перечисленного выше, а вместо `return` пишем сразу выражение, результат которого нужно вернуть. А вызываются эти функции одинаково: 
 ```
 >>> square(5)
 25 
->>> lambda_square(5))
+>>> lambda_square(5)
 25 
 ```
 
@@ -94,7 +94,7 @@ def is_adult(x):
 list(filter(is_adult, ages))
 
 
-is_adult = lambda age: True if x >= 18 else False
+is_adult = lambda age: True if age >= 18 else False
 list(filter(is_adult, ages))
 ```
 
@@ -102,7 +102,7 @@ list(filter(is_adult, ages))
 
 ```
 ages = [18, 5, 12, 32, 17, 24]
-list(filter(lambda age: True if x >= 18 else False, ages))
+list(filter(lambda age: True if age >= 18 else False, ages))
 ```
 
 Еще пример: 
@@ -119,8 +119,8 @@ vowels = list(filter(is_vowel, letters))
 Переписываем на лямбда-функцию: 
 ```
 letters = ['a', 'b', 'd', 'e', 'i', 'j', 'o']
-   
 vowels = list(filter(lambda l: True if l in ['a', 'e', 'i', 'o', 'u'] else False, letters))
+vowels
 ```
 Еще пример. Было: 
 ```
@@ -177,3 +177,4 @@ d = {2:3, 1:89, 4:5, 3:0}
 d1 = dict(sorted(d.items(), key = lambda x:x[0]))
 ```
 
+Все! 
