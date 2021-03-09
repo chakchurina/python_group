@@ -178,3 +178,46 @@ d1 = dict(sorted(d.items(), key = lambda x:x[0]))
 ```
 
 Все! 
+
+# Задачи 
+## Задача 1
+На вход программе подается массив целых чисел A. Программа должна вернуть наименьшее целое положительное число, которого в массиве нет. 
+```
+numbers = A
+
+if numbers[-1] <= 0:
+    print(1)
+else:
+    for i in range (1, (numbers[-1] + 2)):
+        if i not in numbers:
+            print(i)
+            break
+```
+
+Еще решение: 
+
+```
+def solution(A):
+    A = sorted(set(A)) 
+    i = 1 
+    while True: 
+        if i in A: 
+            i += 1 
+        else: 
+            return i
+            break
+```
+Мое решение: 
+
+```
+def solution(A):
+    result = [False for i in range(100001)]
+    for i in A:
+        result[i - 1] = True
+
+    for pos, i in enumerate(result):
+        if not i:
+            return pos + 1
+
+print(solution(A))
+```
