@@ -102,7 +102,7 @@ list(filter(is_adult, ages))
 
 ```
 ages = [18, 5, 12, 32, 17, 24]
-list(filter(lambda age: True if age >= 18 else False, ages))
+list(filter(lambda age: age >= 18, ages))
 ```
 
 Еще пример: 
@@ -111,15 +111,18 @@ letters = ['a', 'b', 'd', 'e', 'i', 'j', 'o']
 
 def is_vowel(letter):
     vowels = ['a', 'e', 'i', 'o', 'u']
-    return True if letter in vowels else False
-   
+    if letter in vowels: 
+        return True
+    else: 
+        return False
+        
 vowels = list(filter(is_vowel, letters))
 
 ```
 Переписываем на лямбда-функцию: 
 ```
 letters = ['a', 'b', 'd', 'e', 'i', 'j', 'o']
-vowels = list(filter(lambda l: True if l in ['a', 'e', 'i', 'o', 'u'] else False, letters))
+vowels = list(filter(lambda l: l in ['a', 'e', 'i', 'o', 'u'], letters))
 vowels
 ```
 Еще пример. Было: 
@@ -127,7 +130,10 @@ vowels
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 def if_odd(x):
-    return True if x % 2 != 0 else False
+    if x % 2 != 0:
+        return True 
+    else: 
+        return False
 
 result = filter(if_odd, numbers) 
 print(list(result))
@@ -135,7 +141,7 @@ print(list(result))
 Стало: 
 ```
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-list(filter(lambda x: True if x % 2 != 0 else False, numbers))
+list(filter(lambda x: x % 2 != 0, numbers))
 ```
 
 Еще пример. Было -- как в начале в примере со squares. Стало: 
@@ -177,47 +183,16 @@ d = {2:3, 1:89, 4:5, 3:0}
 d1 = dict(sorted(d.items(), key = lambda x:x[0]))
 ```
 
-Все! 
+## Лямбды и поиск минимума и максимума 
 
-# Задачи 
-## Задача 1
-На вход программе подается массив целых чисел A. Программа должна вернуть наименьшее целое положительное число, которого в массиве нет. 
-```
-numbers = A
-
-if numbers[-1] <= 0:
-    print(1)
-else:
-    for i in range (1, (numbers[-1] + 2)):
-        if i not in numbers:
-            print(i)
-            break
-```
-
-Еще решение: 
+Также лямбды часто используют при поиске минимума и максимума в структурах данных: 
 
 ```
-def solution(A):
-    A = sorted(set(A)) 
-    i = 1 
-    while True: 
-        if i in A: 
-            i += 1 
-        else: 
-            return i
-            break
+>>> d = {'a': 20, 'b': 5, 'c': 30}
+min(d, key=lambda x: d[x])
+'b'
+>>> max(d, key=lambda x: d[x])
+'c'
 ```
-Мое решение: 
+# Все! 
 
-```
-def solution(A):
-    result = [False for i in range(100001)]
-    for i in A:
-        result[i - 1] = True
-
-    for pos, i in enumerate(result):
-        if not i:
-            return pos + 1
-
-print(solution(A))
-```
