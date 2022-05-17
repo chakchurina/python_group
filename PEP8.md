@@ -6,6 +6,24 @@
 
 >Comments are a love letter to your future self
 
+Compared to other language specifications, I find PEPs to be concise, easy-to-digest, and often fun to read.
+
+
+The most important PEPs, I would say, are the ones I wish my colleagues would read because the topics within are relevant on an almost daily basis. I consider these to be basic python knowledge for a senior engineer. Take that with a grain of salt, I suppose.
+
+
+PEP 1: PEP Purpose and Guidelines: https://www.python.org/dev/peps/pep-0001
+
+- skim this to get an idea of what's inside, and read it as you become more curious about PEPs after reading some
+
+PEP 20: The Zen of Python: https://www.python.org/dev/peps/pep-0020/
+
+- a good introduction to Python for any level of experience, but a good reminder of how to write idiomatic code
+
+PEP 484: Type Hints: https://www.python.org/dev/peps/pep-0484/
+
+- invaluable when your code base grows, especially if you use an IDE
+
 # PEP8
 PEP8 -- это основной документ, регламентирующий стиль кода в Python. Документ носит рекомендательный характер, но следование ему бывает обязательным в некоторых командах. 
 
